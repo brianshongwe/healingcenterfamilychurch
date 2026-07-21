@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healing Center Family Church</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --teal-deep:#0F3D3E;
+    --teal:#175E5A;
+    --sky:#A9C9CE;
+    --sun:#E4A73B;
+    --sun-soft:#F0C878;
+    --mint:#F0F5F1;
+    --paper:#FBFDFC;
+    --ink:#1C2B2A;
+    --muted:#5C6E6B;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope', sans-serif;
+    background:var(--mint);
+    color:var(--ink);
+    margin:0;
+  }
+  h1,h2,h3,h4,.display-font{
+    font-family:'DM Serif Display', serif;
+    font-weight:400;
+    letter-spacing:-.01em;
+  }
+  .eyebrow{
+    font-size:.72rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--sun);
+    font-weight:700;
+  }
+  a{color:inherit;}
+  .btn-sun{
+    background:var(--sun);
+    border:none;
+    color:var(--teal-deep);
+    font-weight:700;
+    padding:.75rem 1.7rem;
+    border-radius:40px;
+    transition:.25s ease;
+  }
+  .btn-sun:hover{background:var(--sun-soft);color:var(--teal-deep);}
+  .btn-ghost-light{
+    border:1.5px solid rgba(255,255,255,.65);
+    color:#fff;
+    font-weight:600;
+    padding:.72rem 1.6rem;
+    border-radius:40px;
+    background:rgba(255,255,255,.06);
+  }
+  .btn-ghost-light:hover{background:rgba(255,255,255,.18);color:#fff;}
+  .btn-ghost-dark{
+    border:1.5px solid rgba(15,61,62,.3);
+    color:var(--teal-deep);
+    font-weight:600;
+    padding:.72rem 1.6rem;
+    border-radius:40px;
+    background:transparent;
+  }
+  .btn-ghost-dark:hover{background:rgba(15,61,62,.06);}
+
+  /* ---------------- NAV ---------------- */
+  .navbar-hc{
+    padding:1.1rem 0;
+    background:transparent;
+    position:absolute;
+    top:0;left:0;right:0;
+    z-index:50;
+  }
+  .navbar-hc.scrolled{
+    background:rgba(251,253,252,.92);
+    backdrop-filter:blur(8px);
+    box-shadow:0 2px 18px rgba(15,61,62,.08);
+    position:fixed;
+  }
+  .navbar-hc .brand-mark{
+    width:40px;height:40px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--sun-soft), var(--sun) 60%, var(--teal) 130%);
+    display:inline-flex;align-items:center;justify-content:center;
+    margin-right:.6rem;
+  }
+  .navbar-hc .navbar-brand{
+    display:flex;align-items:center;
+    font-family:'DM Serif Display',serif;
+    font-size:1.15rem;
+    color:#fff;
+  }
+  .navbar-hc.scrolled .navbar-brand{color:var(--teal-deep);}
+  .navbar-hc .nav-link{
+    color:rgba(255,255,255,.9) !important;
+    font-weight:600;font-size:.9rem;
+    margin:0 .55rem;
+  }
+  .navbar-hc.scrolled .nav-link{color:var(--ink) !important;}
+  .navbar-hc .navbar-toggler{border-color:rgba(255,255,255,.5);}
+
+  /* ---------------- HERO ---------------- */
+  .hero-carousel-wrap{position:relative;}
+  .carousel-item{height:92vh;min-height:600px;position:relative;}
+  .carousel-item img{width:100%;height:100%;object-fit:cover;}
+  .hero-veil{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(15,61,62,.55) 0%, rgba(15,61,62,.25) 45%, rgba(15,61,62,.75) 100%);
+  }
+  .hero-orb{
+    position:absolute;
+    width:520px;height:520px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(228,167,59,.35) 0%, rgba(228,167,59,0) 70%);
+    top:-120px;right:-80px;
+    pointer-events:none;
+    z-index:2;
+  }
+  .hero-content{
+    position:absolute;inset:0;z-index:5;
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .hero-content h1{
+    color:#fff;font-size:clamp(2.4rem,5vw,4rem);line-height:1.05;font-weight:400;
+    max-width:780px;
+  }
+  .hero-content p.lead{color:rgba(255,255,255,.88);font-size:1.15rem;max-width:560px;}
+  .glass-card{
+    position:absolute;
+    left:0;right:0;bottom:2.4rem;
+    z-index:6;
+  }
+  .glass-inner{
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.28);
+    backdrop-filter:blur(14px);
+    border-radius:20px;
+    padding:1.5rem 1.8rem;
+    color:#fff;
+  }
+  .glass-inner .div-line{width:1px;background:rgba(255,255,255,.3);align-self:stretch;}
+  .glass-inner .g-label{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sun-soft);font-weight:700;margin-bottom:.25rem;}
+
+  .carousel-indicators{bottom:auto;top:1.5rem;}
+  .carousel-indicators [data-bs-target]{
+    width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.55);border:none;margin:0 5px;
+  }
+  .carousel-indicators .active{background:var(--sun);}
+  .carousel-control-prev,.carousel-control-next{width:5%;opacity:.55;}
+
+  /* ---------------- SECTIONS ---------------- */
+  section{padding:6rem 0;}
+  .wave-divider{display:block;width:100%;height:70px;margin-top:-1px;}
+
+  /* ---------------- WELCOME RIBBON ---------------- */
+  .ribbon{
+    background:var(--teal-deep);
+    color:#fff;
+    padding:1.4rem 0;
+  }
+  .ribbon .msg{font-family:'DM Serif Display',serif;font-size:1.25rem;font-style:italic;}
+
+  /* ---------------- ABOUT COLLAGE ---------------- */
+  .collage{position:relative;height:460px;}
+  .collage img{
+    position:absolute;object-fit:cover;border-radius:22px;
+    box-shadow:0 25px 50px rgba(15,61,62,.18);
+  }
+  .collage .c1{width:62%;height:70%;top:0;left:0;}
+  .collage .c2{width:48%;height:52%;bottom:0;right:0;border:6px solid var(--mint);}
+  .pill-badge{
+    position:absolute;bottom:14%;left:8%;
+    background:var(--paper);
+    border-radius:16px;
+    padding:1rem 1.3rem;
+    box-shadow:0 20px 40px rgba(15,61,62,.15);
+    z-index:3;
+  }
+  .pill-badge .num{font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--teal-deep);}
+  .pill-badge .cap{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
+
+  /* ---------------- MINISTRIES ---------------- */
+  .care-card{
+    background:var(--paper);
+    border-radius:22px;
+    padding:2.1rem 1.8rem;
+    height:100%;
+    border:1px solid rgba(15,61,62,.08);
+    transition:.3s ease;
+  }
+  .care-card:hover{transform:translateY(-6px);box-shadow:0 22px 45px rgba(15,61,62,.12);}
+  .care-icon{
+    width:54px;height:54px;border-radius:16px;
+    background:linear-gradient(135deg, var(--sun-soft), var(--sun));
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.4rem;color:var(--teal-deep);
+    margin-bottom:1.1rem;
+  }
+  .care-card h5{font-weight:700;font-family:'Manrope',sans-serif;margin-bottom:.5rem;}
+  .care-card p{color:var(--muted);font-size:.9rem;margin-bottom:0;}
+
+  /* ---------------- EVENTS TIMELINE ---------------- */
+  .timeline-track{
+    position:relative;padding-left:0;
+    display:flex;overflow-x:auto;gap:1.6rem;
+    scrollbar-width:thin;
+    padding-bottom:1rem;
+  }
+  .timeline-card{
+    min-width:270px;
+    background:var(--paper);
+    border-radius:18px;
+    padding:1.6rem;
+    border:1px solid rgba(15,61,62,.08);
+    flex-shrink:0;
+  }
+  .timeline-card .tag{
+    display:inline-block;background:var(--mint);color:var(--teal);
+    font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700;
+    padding:.3rem .7rem;border-radius:20px;margin-bottom:.9rem;
+  }
+
+  /* ---------------- SERMON ---------------- */
+  .sermon-block{
+    background:var(--teal-deep);
+    border-radius:26px;
+    overflow:hidden;
+    color:#fff;
+  }
+  .sermon-img{position:relative;min-height:340px;height:100%;}
+  .sermon-img img{width:100%;height:100%;object-fit:cover;opacity:.55;}
+  .play-circle{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:66px;height:66px;border-radius:50%;
+    background:var(--sun);color:var(--teal-deep);
+    display:flex;align-items:center;justify-content:center;font-size:1.4rem;
+  }
+
+  /* ---------------- GIVE ---------------- */
+  .give-wave-band{
+    background:var(--sun);
+    color:var(--teal-deep);
+    border-radius:26px;
+    padding:3rem 2.6rem;
+  }
+
+  /* ---------------- CONTACT ---------------- */
+  .contact-card{
+    background:var(--paper);
+    border-radius:22px;
+    padding:2rem;
+    border:1px solid rgba(15,61,62,.08);
+  }
+
+  footer{background:var(--teal-deep);color:rgba(255,255,255,.78);padding:3.5rem 0 1.5rem;}
+  footer h6{color:#fff;font-family:'DM Serif Display',serif;font-size:1.15rem;margin-bottom:1rem;}
+  footer a{color:rgba(255,255,255,.75);text-decoration:none;font-size:.92rem;}
+  footer a:hover{color:var(--sun-soft);}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:2.4rem;padding-top:1.4rem;font-size:.8rem;color:rgba(255,255,255,.5);}
+  .social-dot{
+    width:36px;height:36px;border-radius:50%;
+    border:1px solid rgba(255,255,255,.3);
+    display:inline-flex;align-items:center;justify-content:center;
+    margin-right:.5rem;
+  }
+  .social-dot:hover{background:var(--sun);border-color:var(--sun);color:var(--teal-deep);}
+
+  @media (max-width:767px){
+    section{padding:4rem 0;}
+    .collage{height:320px;}
+    .pill-badge{left:4%;bottom:8%;padding:.7rem 1rem;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="navbar navbar-expand-lg navbar-hc" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="#top">
+      Healing Center<br class="d-none">&nbsp;Family Church
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMain">
+      <ul class="navbar-nav align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#care">Ministries</a></li>
+        <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
+        <li class="nav-item"><a class="nav-link" href="#sermon">Messages</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Visit</a></li>
+        <li class="nav-item ms-lg-2 mt-2 mt-lg-0"><a class="btn btn-sun btn-sm" href="#give">Give</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO CAROUSEL -->
+<div id="top" class="hero-carousel-wrap">
+  <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+    </div>
+    <div class="carousel-inner">
+
+      <div class="carousel-item active">
+        <img src="images/worship-service.jpg" alt="Sunday worship at Healing Centre Family Church">
+        <div class="hero-veil"></div>
+        <div class="hero-orb"></div>
+        <div class="hero-content">
+          <div class="container">
+            <div class="eyebrow mb-3">You are welcome here</div>
+            <h1>A place to be<br>seen, known, and healed.</h1>
+            <p class="lead mt-3 mb-4">Join Healing Center Family Church this Sunday for worship, honest teaching, and a family that shows up for one another.</p>
+            <div class="d-flex gap-3 flex-wrap">
+              <a href="#contact" class="btn btn-sun">Plan Your Visit</a>
+              <a href="#sermon" class="btn btn-ghost-light">Watch Online <i class="bi bi-play-circle ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="glass-card">
+          <div class="container">
+            <div class="glass-inner d-flex flex-wrap align-items-center gap-4">
+              <div>
+                <div class="g-label">Service Times</div>
+                <div>Sun · 10:00 AM – 12:30 PM</div>
+              </div>
+              <div class="div-line d-none d-md-block"></div>
+              <div>
+                <div class="g-label">Location</div>
+                <div>Cnr Chris Hani Dr &amp; Guinea Fowl St, Etwatwa</div>
+              </div>
+              <div class="div-line d-none d-md-block"></div>
+              <div>
+                <div class="g-label">Prayer Line</div>
+                <div>Available every service</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <img src="images/pastor-preaching.jpg" alt="Pastor preaching at Healing Centre Family Church">
+        <div class="hero-veil"></div>
+        <div class="hero-orb"></div>
+        <div class="hero-content">
+          <div class="container">
+            <div class="eyebrow mb-3">Restoration &amp; Recovery</div>
+            <h1>Real healing happens<br>in real community.</h1>
+            <p class="lead mt-3 mb-4">Our care ministries walk alongside families through grief, recovery, and everyday struggles, no one heals alone here.</p>
+            <div class="d-flex gap-3 flex-wrap">
+              <a href="#care" class="btn btn-sun">Explore Care Ministries</a>
+              <a href="#events" class="btn btn-ghost-light">Upcoming Events</a>
+            </div>
+          </div>
+        </div>
+        <div class="glass-card">
+          <div class="container">
+            <div class="glass-inner d-flex flex-wrap align-items-center gap-4">
+              <div>
+                <div class="g-label">Support Groups</div>
+                <div>Weekly · Tuesdays 7 PM</div>
+              </div>
+              <div class="div-line d-none d-md-block"></div>
+              <div>
+                <div class="g-label">Counseling</div>
+                <div>By appointment, no cost</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <img src="images/community-walking.jpg" alt="Church family and community at Healing Centre Family Church">
+        <div class="hero-veil"></div>
+        <div class="hero-orb"></div>
+        <div class="hero-content">
+          <div class="container">
+            <div class="eyebrow mb-3">For the whole family</div>
+            <h1>Kids, students &amp;<br>every generation.</h1>
+            <p class="lead mt-3 mb-4">Safe, joyful spaces for your kids and teens while you worship, led by leaders who know your family by name.</p>
+            <div class="d-flex gap-3 flex-wrap">
+              <a href="#care" class="btn btn-sun">Kids &amp; Students</a>
+            </div>
+          </div>
+        </div>
+        <div class="glass-card">
+          <div class="container">
+            <div class="glass-inner d-flex flex-wrap align-items-center gap-4">
+              <div>
+                <div class="g-label">Kids Check-In</div>
+                <div>Opens 30 min before service</div>
+              </div>
+              <div class="div-line d-none d-md-block"></div>
+              <div>
+                <div class="g-label">Students</div>
+                <div>Wednesdays · 6:30 PM</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+</div>
+
+<!-- WELCOME RIBBON -->
+<div class="ribbon">
+  <div class="container text-center">
+    <div class="msg">"Come to me, all who are weary, and I will give you rest."</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="collage">
+          <img class="c1" src="images/leaders-outside.jpg" alt="Church leadership at Healing Centre Family Church">
+          <img class="c2" src="images/worship-service.jpg" alt="Sunday worship service">
+          <div class="pill-badge">
+            <div class="num">32 yrs</div>
+            <div class="cap">Serving Since 1994</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="eyebrow mb-2">Our Story</div>
+        <h2 class="mb-3" style="font-size:2.2rem;">A family united in loving God through serving people.</h2>
+        <p style="color:var(--muted);">Healing Centre Family Church is a non-denominational, non-cultural contemporary body of believers, united in loving God through serving people.</p>
+        <p style="color:var(--muted);">Founded by Bishops Ephraim and Mirriam Mchunu in 1994, the church has grown to a membership of 2000+.</p>
+        <div class="row mt-4 g-3">
+          <div class="col-6 col-sm-4">
+            <div class="fw-bold" style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--teal-deep);">2000+</div>
+            <div style="font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">Members</div>
+          </div>
+          <div class="col-6 col-sm-4">
+            <div class="fw-bold" style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--teal-deep);">9</div>
+            <div style="font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">Care Ministries</div>
+          </div>
+          <div class="col-6 col-sm-4">
+            <div class="fw-bold" style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--teal-deep);">0</div>
+            <div style="font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">Cost to Counseling</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MINISTRIES / CARE -->
+<section id="care" style="background:var(--paper);">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="eyebrow mb-2">Find Your Place</div>
+      <h2>Ministries &amp; Care</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="care-card">
+          <div class="care-icon"><i class="bi bi-heart-pulse"></i></div>
+          <h5>Recovery &amp; Care</h5>
+          <p>Support groups and free counseling for grief, addiction, and life transitions.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="care-card">
+          <div class="care-icon"><i class="bi bi-people"></i></div>
+          <h5>Family Groups</h5>
+          <p>Small groups meeting weekly across the city to grow in faith together.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="care-card">
+          <div class="care-icon"><i class="bi bi-emoji-smile"></i></div>
+          <h5>Kids &amp; Students</h5>
+          <p>Age-appropriate teaching and safe, joyful spaces every Sunday and Wednesday.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="care-card">
+          <div class="care-icon"><i class="bi bi-hand-thumbs-up"></i></div>
+          <h5>Serve the City</h5>
+          <p>Food pantry, shelter partnerships, and neighbor-care teams year-round.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-3">
+      <div>
+        <div class="eyebrow mb-2">This Season</div>
+        <h2>Upcoming Events</h2>
+      </div>
+      <a href="#contact" class="btn btn-ghost-dark">Full Calendar</a>
+    </div>
+    <div class="timeline-track">
+      <div class="timeline-card">
+        <span class="tag">Aug 14</span>
+        <h5 class="fw-bold">Neighborhood Food Drive</h5>
+        <p style="color:var(--muted);font-size:.9rem;">9:00 AM · Fellowship Hall</p>
+      </div>
+      <div class="timeline-card">
+        <span class="tag">Aug 21</span>
+        <h5 class="fw-bold">Baptism Sunday</h5>
+        <p style="color:var(--muted);font-size:.9rem;">11:00 AM · Main Sanctuary</p>
+      </div>
+      <div class="timeline-card">
+        <span class="tag">Sep 03</span>
+        <h5 class="fw-bold">Grief Support Kickoff</h5>
+        <p style="color:var(--muted);font-size:.9rem;">6:30 PM · Care Room</p>
+      </div>
+      <div class="timeline-card">
+        <span class="tag">Sep 17</span>
+        <h5 class="fw-bold">Community Meal &amp; Prayer Night</h5>
+        <p style="color:var(--muted);font-size:.9rem;">6:00 PM · Fellowship Hall</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERMON -->
+<section id="sermon" style="background:var(--paper);">
+  <div class="container">
+    <div class="sermon-block">
+      <div class="row g-0">
+        <div class="col-lg-6">
+          <div class="sermon-img">
+            <img src="images/pastor-preaching.jpg" alt="Latest message at Healing Centre Family Church">
+            <div class="play-circle"><i class="bi bi-play-fill"></i></div>
+          </div>
+        </div>
+        <div class="col-lg-6 d-flex align-items-center">
+          <div class="p-4 p-lg-5">
+            <div class="eyebrow mb-2">This Week's Message</div>
+            <h3 class="mb-3">Roots Before Fruit</h3>
+            <p style="color:rgba(255,255,255,.78);">Part four of our summer series on formation, why slow, steady healing often outlasts the quick fix.</p>
+            <a href="#" class="btn btn-sun mt-2">Watch Now <i class="bi bi-arrow-right ms-1"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GIVE -->
+<section id="give">
+  <div class="container">
+    <div class="give-wave-band">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <div class="eyebrow mb-2" style="color:var(--teal-deep);opacity:.75;">Generosity</div>
+          <h2 class="mb-2">Give toward healing in our city.</h2>
+          <p style="margin-bottom:0;opacity:.85;">Every gift funds free counseling, our weekly gatherings, and care for families across Riverside.</p>
+        </div>
+        <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+          <a href="#" class="btn btn-ghost-dark" style="background:var(--teal-deep);color:#fff;border-color:var(--teal-deep);">Give Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:var(--paper);">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <div class="eyebrow mb-2">Plan a Visit</div>
+        <h2 class="mb-3">We'd love to save you a seat.</h2>
+        <ul class="list-unstyled" style="color:var(--muted);">
+          <li class="mb-2"><i class="bi bi-geo-alt me-2" style="color:var(--sun);"></i>Cnr Chris Hani Dr &amp; Guinea Fowl St, Etwatwa</li>
+          <li class="mb-2"><i class="bi bi-clock me-2" style="color:var(--sun);"></i>Sundays, 10:00 AM – 12:30 PM</li>
+          <li class="mb-2"><i class="bi bi-envelope me-2" style="color:var(--sun);"></i>hello@healingcenterfamily.org</li>
+          <li class="mb-2"><i class="bi bi-telephone me-2" style="color:var(--sun);"></i>(011) 555-0148</li>
+        </ul>
+      </div>
+      <div class="col-lg-7">
+        <div class="contact-card">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <input type="text" class="form-control" placeholder="Full name" style="border-radius:12px;padding:.75rem 1rem;">
+            </div>
+            <div class="col-md-6">
+              <input type="email" class="form-control" placeholder="Email address" style="border-radius:12px;padding:.75rem 1rem;">
+            </div>
+            <div class="col-12">
+              <textarea class="form-control" rows="4" placeholder="How can we help?" style="border-radius:12px;padding:.75rem 1rem;"></textarea>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-sun" type="button">Send Message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <h6>Healing Center Family Church</h6>
+        <p style="font-size:.9rem;">A non-denominational family of believers, gathering since 1994.</p>
+        <div class="mt-3">
+          <a href="#" class="social-dot"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-dot"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-dot"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6>Explore</h6>
+        <div class="d-flex flex-column gap-2">
+          <a href="#about">About</a>
+          <a href="#care">Ministries</a>
+          <a href="#events">Events</a>
+          <a href="#sermon">Messages</a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6>Connect</h6>
+        <div class="d-flex flex-column gap-2">
+          <a href="#contact">Plan a Visit</a>
+          <a href="#give">Give</a>
+          <a href="#">Volunteer</a>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <h6>Service Times</h6>
+        <p style="font-size:.9rem;margin-bottom:.3rem;">Sundays — 10:00 AM – 12:30 PM</p>
+        <p style="font-size:.9rem;">Cnr Chris Hani Dr &amp; Guinea Fowl St, Etwatwa</p>
+      </div>
+    </div>
+    <div class="foot-bottom text-center">
+      &copy; 2026 Healing Center Family Church. All rights reserved. · Free template, built with Bootstrap 5.
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  window.addEventListener('scroll', function(){
+    const nav = document.getElementById('mainNav');
+    if(window.scrollY > 60){ nav.classList.add('scrolled'); }
+    else { nav.classList.remove('scrolled'); }
+  });
+</script>
+</body>
+</html>
