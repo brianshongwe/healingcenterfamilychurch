@@ -1,677 +1,766 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Healing Center Family Church</title>
+  <script>document.documentElement.classList.add("js")</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Healing Center Family Church</title>
+  <meta name="description" content="Healing Center Family Church is a warm, Christ-centered family in Asheville. Join us Sundays at 9 &amp; 11 AM. Plan your visit, watch sermons online, and find your place in a small group.">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-  :root{
-    --teal-deep:#0F3D3E;
-    --teal:#175E5A;
-    --sky:#A9C9CE;
-    --sun:#E4A73B;
-    --sun-soft:#F0C878;
-    --mint:#F0F5F1;
-    --paper:#FBFDFC;
-    --ink:#1C2B2A;
-    --muted:#5C6E6B;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    font-family:'Manrope', sans-serif;
-    background:var(--mint);
-    color:var(--ink);
-    margin:0;
-  }
-  h1,h2,h3,h4,.display-font{
-    font-family:'DM Serif Display', serif;
-    font-weight:400;
-    letter-spacing:-.01em;
-  }
-  .eyebrow{
-    font-size:.72rem;
-    letter-spacing:.2em;
-    text-transform:uppercase;
-    color:var(--sun);
-    font-weight:700;
-  }
-  a{color:inherit;}
-  .btn-sun{
-    background:var(--sun);
-    border:none;
-    color:var(--teal-deep);
-    font-weight:700;
-    padding:.75rem 1.7rem;
-    border-radius:40px;
-    transition:.25s ease;
-  }
-  .btn-sun:hover{background:var(--sun-soft);color:var(--teal-deep);}
-  .btn-ghost-light{
-    border:1.5px solid rgba(255,255,255,.65);
-    color:#fff;
-    font-weight:600;
-    padding:.72rem 1.6rem;
-    border-radius:40px;
-    background:rgba(255,255,255,.06);
-  }
-  .btn-ghost-light:hover{background:rgba(255,255,255,.18);color:#fff;}
-  .btn-ghost-dark{
-    border:1.5px solid rgba(15,61,62,.3);
-    color:var(--teal-deep);
-    font-weight:600;
-    padding:.72rem 1.6rem;
-    border-radius:40px;
-    background:transparent;
-  }
-  .btn-ghost-dark:hover{background:rgba(15,61,62,.06);}
-
-  /* ---------------- NAV ---------------- */
-  .navbar-hc{
-    padding:1.1rem 0;
-    background:transparent;
-    position:absolute;
-    top:0;left:0;right:0;
-    z-index:50;
-  }
-  .navbar-hc.scrolled{
-    background:rgba(251,253,252,.92);
-    backdrop-filter:blur(8px);
-    box-shadow:0 2px 18px rgba(15,61,62,.08);
-    position:fixed;
-  }
-  .navbar-hc .brand-mark{
-    width:40px;height:40px;border-radius:50%;
-    background:radial-gradient(circle at 35% 30%, var(--sun-soft), var(--sun) 60%, var(--teal) 130%);
-    display:inline-flex;align-items:center;justify-content:center;
-    margin-right:.6rem;
-  }
-  .navbar-hc .navbar-brand{
-    display:flex;align-items:center;
-    font-family:'DM Serif Display',serif;
-    font-size:1.15rem;
-    color:#fff;
-  }
-  .navbar-hc.scrolled .navbar-brand{color:var(--teal-deep);}
-  .navbar-hc .nav-link{
-    color:rgba(255,255,255,.9) !important;
-    font-weight:600;font-size:.9rem;
-    margin:0 .55rem;
-  }
-  .navbar-hc.scrolled .nav-link{color:var(--ink) !important;}
-  .navbar-hc .navbar-toggler{border-color:rgba(255,255,255,.5);}
-
-  /* ---------------- HERO ---------------- */
-  .hero-carousel-wrap{position:relative;}
-  .carousel-item{height:92vh;min-height:600px;position:relative;}
-  .carousel-item img{width:100%;height:100%;object-fit:cover;}
-  .hero-veil{
-    position:absolute;inset:0;
-    background:linear-gradient(180deg, rgba(15,61,62,.55) 0%, rgba(15,61,62,.25) 45%, rgba(15,61,62,.75) 100%);
-  }
-  .hero-orb{
-    position:absolute;
-    width:520px;height:520px;
-    border-radius:50%;
-    background:radial-gradient(circle, rgba(228,167,59,.35) 0%, rgba(228,167,59,0) 70%);
-    top:-120px;right:-80px;
-    pointer-events:none;
-    z-index:2;
-  }
-  .hero-content{
-    position:absolute;inset:0;z-index:5;
-    display:flex;flex-direction:column;justify-content:center;
-  }
-  .hero-content h1{
-    color:#fff;font-size:clamp(2.4rem,5vw,4rem);line-height:1.05;font-weight:400;
-    max-width:780px;
-  }
-  .hero-content p.lead{color:rgba(255,255,255,.88);font-size:1.15rem;max-width:560px;}
-  .glass-card{
-    position:absolute;
-    left:0;right:0;bottom:2.4rem;
-    z-index:6;
-  }
-  .glass-inner{
-    background:rgba(255,255,255,.14);
-    border:1px solid rgba(255,255,255,.28);
-    backdrop-filter:blur(14px);
-    border-radius:20px;
-    padding:1.5rem 1.8rem;
-    color:#fff;
-  }
-  .glass-inner .div-line{width:1px;background:rgba(255,255,255,.3);align-self:stretch;}
-  .glass-inner .g-label{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sun-soft);font-weight:700;margin-bottom:.25rem;}
-
-  .carousel-indicators{bottom:auto;top:1.5rem;}
-  .carousel-indicators [data-bs-target]{
-    width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.55);border:none;margin:0 5px;
-  }
-  .carousel-indicators .active{background:var(--sun);}
-  .carousel-control-prev,.carousel-control-next{width:5%;opacity:.55;}
-
-  /* ---------------- SECTIONS ---------------- */
-  section{padding:6rem 0;}
-  .wave-divider{display:block;width:100%;height:70px;margin-top:-1px;}
-
-  /* ---------------- WELCOME RIBBON ---------------- */
-  .ribbon{
-    background:var(--teal-deep);
-    color:#fff;
-    padding:1.4rem 0;
-  }
-  .ribbon .msg{font-family:'DM Serif Display',serif;font-size:1.25rem;font-style:italic;}
-
-  /* ---------------- ABOUT COLLAGE ---------------- */
-  .collage{position:relative;height:460px;}
-  .collage img{
-    position:absolute;object-fit:cover;border-radius:22px;
-    box-shadow:0 25px 50px rgba(15,61,62,.18);
-  }
-  .collage .c1{width:62%;height:70%;top:0;left:0;}
-  .collage .c2{width:48%;height:52%;bottom:0;right:0;border:6px solid var(--mint);}
-  .pill-badge{
-    position:absolute;bottom:14%;left:8%;
-    background:var(--paper);
-    border-radius:16px;
-    padding:1rem 1.3rem;
-    box-shadow:0 20px 40px rgba(15,61,62,.15);
-    z-index:3;
-  }
-  .pill-badge .num{font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--teal-deep);}
-  .pill-badge .cap{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
-
-  /* ---------------- MINISTRIES ---------------- */
-  .care-card{
-    background:var(--paper);
-    border-radius:22px;
-    padding:2.1rem 1.8rem;
-    height:100%;
-    border:1px solid rgba(15,61,62,.08);
-    transition:.3s ease;
-  }
-  .care-card:hover{transform:translateY(-6px);box-shadow:0 22px 45px rgba(15,61,62,.12);}
-  .care-icon{
-    width:54px;height:54px;border-radius:16px;
-    background:linear-gradient(135deg, var(--sun-soft), var(--sun));
-    display:flex;align-items:center;justify-content:center;
-    font-size:1.4rem;color:var(--teal-deep);
-    margin-bottom:1.1rem;
-  }
-  .care-card h5{font-weight:700;font-family:'Manrope',sans-serif;margin-bottom:.5rem;}
-  .care-card p{color:var(--muted);font-size:.9rem;margin-bottom:0;}
-
-  /* ---------------- EVENTS TIMELINE ---------------- */
-  .timeline-track{
-    position:relative;padding-left:0;
-    display:flex;overflow-x:auto;gap:1.6rem;
-    scrollbar-width:thin;
-    padding-bottom:1rem;
-  }
-  .timeline-card{
-    min-width:270px;
-    background:var(--paper);
-    border-radius:18px;
-    padding:1.6rem;
-    border:1px solid rgba(15,61,62,.08);
-    flex-shrink:0;
-  }
-  .timeline-card .tag{
-    display:inline-block;background:var(--mint);color:var(--teal);
-    font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700;
-    padding:.3rem .7rem;border-radius:20px;margin-bottom:.9rem;
-  }
-
-  /* ---------------- SERMON ---------------- */
-  .sermon-block{
-    background:var(--teal-deep);
-    border-radius:26px;
-    overflow:hidden;
-    color:#fff;
-  }
-  .sermon-img{position:relative;min-height:340px;height:100%;}
-  .sermon-img img{width:100%;height:100%;object-fit:cover;opacity:.55;}
-  .play-circle{
-    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-    width:66px;height:66px;border-radius:50%;
-    background:var(--sun);color:var(--teal-deep);
-    display:flex;align-items:center;justify-content:center;font-size:1.4rem;
-  }
-
-  /* ---------------- GIVE ---------------- */
-  .give-wave-band{
-    background:var(--sun);
-    color:var(--teal-deep);
-    border-radius:26px;
-    padding:3rem 2.6rem;
-  }
-
-  /* ---------------- CONTACT ---------------- */
-  .contact-card{
-    background:var(--paper);
-    border-radius:22px;
-    padding:2rem;
-    border:1px solid rgba(15,61,62,.08);
-  }
-
-  footer{background:var(--teal-deep);color:rgba(255,255,255,.78);padding:3.5rem 0 1.5rem;}
-  footer h6{color:#fff;font-family:'DM Serif Display',serif;font-size:1.15rem;margin-bottom:1rem;}
-  footer a{color:rgba(255,255,255,.75);text-decoration:none;font-size:.92rem;}
-  footer a:hover{color:var(--sun-soft);}
-  .foot-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:2.4rem;padding-top:1.4rem;font-size:.8rem;color:rgba(255,255,255,.5);}
-  .social-dot{
-    width:36px;height:36px;border-radius:50%;
-    border:1px solid rgba(255,255,255,.3);
-    display:inline-flex;align-items:center;justify-content:center;
-    margin-right:.5rem;
-  }
-  .social-dot:hover{background:var(--sun);border-color:var(--sun);color:var(--teal-deep);}
-
-  @media (max-width:767px){
-    section{padding:4rem 0;}
-    .collage{height:320px;}
-    .pill-badge{left:4%;bottom:8%;padding:.7rem 1rem;}
-  }
-</style>
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- NAV -->
-<nav class="navbar navbar-expand-lg navbar-hc" id="mainNav">
-  <div class="container">
-    <a class="navbar-brand" href="#top">
-      Healing Center<br class="d-none">&nbsp;Family Church
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navMain">
-      <ul class="navbar-nav align-items-lg-center">
-        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="#care">Ministries</a></li>
-        <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
-        <li class="nav-item"><a class="nav-link" href="#sermon">Messages</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Visit</a></li>
-        <li class="nav-item ms-lg-2 mt-2 mt-lg-0"><a class="btn btn-sun btn-sm" href="#give">Give</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+  <!-- ===================== NAVBAR ===================== -->
+  <header class="site-nav" id="siteNav">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg p-0" aria-label="Main navigation">
+        <a class="brand" href="index.html" aria-label="Healing Center Family Church home">
+          
+          <span>Healing Center<small>Family Church</small></span>
+        </a>
 
-<!-- HERO CAROUSEL -->
-<div id="top" class="hero-carousel-wrap">
-  <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
-      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
-      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
-    </div>
-    <div class="carousel-inner">
-
-      <div class="carousel-item active">
-        <img src="images/worship-service.jpg" alt="">
-        <div class="hero-veil"></div>
-        <div class="hero-orb"></div>
-        <div class="hero-content">
-          <div class="container">
-            <div class="eyebrow mb-3">You are welcome here</div>
-            <h1>A place to be<br>seen, known, and healed.</h1>
-            <p class="lead mt-3 mb-4">Join Healing Center Family Church this Sunday for worship, honest teaching, and a family that shows up for one another.</p>
-            <div class="d-flex gap-3 flex-wrap">
-              <a href="#contact" class="btn btn-sun">Plan Your Visit</a>
-              <a href="#sermon" class="btn btn-ghost-light">Watch Online <i class="bi bi-play-circle ms-1"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="glass-card">
-          <div class="container">
-            <div class="glass-inner d-flex flex-wrap align-items-center gap-4">
-              <div>
-                <div class="g-label">Service Times</div>
-                <div>Sun · 10:00 AM – 12:30 PM</div>
-              </div>
-              <div class="div-line d-none d-md-block"></div>
-              <div>
-                <div class="g-label">Location</div>
-                <div>Cnr Chris Hani Dr &amp; Guinea Fowl St, Etwatwa</div>
-              </div>
-              <div class="div-line d-none d-md-block"></div>
-              <div>
-                <div class="g-label">Prayer Line</div>
-                <div>Available every service</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="carousel-item">
-        <img src="images/pastor-preaching.jpg" alt="Pastor preaching at Healing Centre Family Church">
-        <div class="hero-veil"></div>
-        <div class="hero-orb"></div>
-        <div class="hero-content">
-          <div class="container">
-            <div class="eyebrow mb-3">Restoration &amp; Recovery</div>
-            <h1>Real healing happens<br>in real community.</h1>
-            <p class="lead mt-3 mb-4">Our care ministries walk alongside families through grief, recovery, and everyday struggles, no one heals alone here.</p>
-            <div class="d-flex gap-3 flex-wrap">
-              <a href="#care" class="btn btn-sun">Explore Care Ministries</a>
-              <a href="#events" class="btn btn-ghost-light">Upcoming Events</a>
-            </div>
-          </div>
-        </div>
-        <div class="glass-card">
-          <div class="container">
-            <div class="glass-inner d-flex flex-wrap align-items-center gap-4">
-              <div>
-                <div class="g-label">Support Groups</div>
-                <div>Weekly · Tuesdays 7 PM</div>
-              </div>
-              <div class="div-line d-none d-md-block"></div>
-              <div>
-                <div class="g-label">Counseling</div>
-                <div>By appointment, no cost</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="carousel-item">
-        <img src="images/community-walking.jpg" alt="Church family and community at Healing Centre Family Church">
-        <div class="hero-veil"></div>
-        <div class="hero-orb"></div>
-        <div class="hero-content">
-          <div class="container">
-            <div class="eyebrow mb-3">For the whole family</div>
-            <h1>Kids, students &amp;<br>every generation.</h1>
-            <p class="lead mt-3 mb-4">Safe, joyful spaces for your kids and teens while you worship, led by leaders who know your family by name.</p>
-            <div class="d-flex gap-3 flex-wrap">
-              <a href="#care" class="btn btn-sun">Kids &amp; Students</a>
-            </div>
-          </div>
-        </div>
-        <div class="glass-card">
-          <div class="container">
-            <div class="glass-inner d-flex flex-wrap align-items-center gap-4">
-              <div>
-                <div class="g-label">Kids Check-In</div>
-                <div>Opens 30 min before service</div>
-              </div>
-              <div class="div-line d-none d-md-block"></div>
-              <div>
-                <div class="g-label">Students</div>
-                <div>Wednesdays · 6:30 PM</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </button>
-  </div>
-</div>
-
-<!-- WELCOME RIBBON -->
-<div class="ribbon">
-  <div class="container text-center">
-    <div class="msg">"Come to me, all who are weary, and I will give you rest."</div>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="container">
-    <div class="row align-items-center g-5">
-      <div class="col-lg-6">
-        <div class="collage">
-          <img class="c1" src="images/leaders-outside.jpg" alt="Church leadership at Healing Centre Family Church">
-          <img class="c2" src="images/worship-service.jpg" alt="Sunday worship service">
-          <div class="pill-badge">
-            <div class="num">32 yrs</div>
-            <div class="cap">Serving Since 1994</div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="eyebrow mb-2">Our Story</div>
-        <h2 class="mb-3" style="font-size:2.2rem;">A family united in loving God through serving people.</h2>
-        <p style="color:var(--muted);">Healing Centre Family Church is a non-denominational, non-cultural contemporary body of believers, united in loving God through serving people.</p>
-        <p style="color:var(--muted);">Founded by Bishops Ephraim and Mirriam Mchunu in 1994, the church has grown to a membership of 2000+.</p>
-        <div class="row mt-4 g-3">
-          <div class="col-6 col-sm-4">
-            <div class="fw-bold" style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--teal-deep);">2000+</div>
-            <div style="font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">Members</div>
-          </div>
-          <div class="col-6 col-sm-4">
-            <div class="fw-bold" style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--teal-deep);">9</div>
-            <div style="font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">Care Ministries</div>
-          </div>
-          <div class="col-6 col-sm-4">
-            <div class="fw-bold" style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--teal-deep);">0</div>
-            <div style="font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">Cost to Counseling</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MINISTRIES / CARE -->
-<section id="care" style="background:var(--paper);">
-  <div class="container">
-    <div class="text-center mb-5">
-      <div class="eyebrow mb-2">Find Your Place</div>
-      <h2>Ministries &amp; Care</h2>
-    </div>
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-3">
-        <div class="care-card">
-          <div class="care-icon"><i class="bi bi-heart-pulse"></i></div>
-          <h5>Recovery &amp; Care</h5>
-          <p>Support groups and free counseling for grief, addiction, and life transitions.</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="care-card">
-          <div class="care-icon"><i class="bi bi-people"></i></div>
-          <h5>Family Groups</h5>
-          <p>Small groups meeting weekly across the city to grow in faith together.</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="care-card">
-          <div class="care-icon"><i class="bi bi-emoji-smile"></i></div>
-          <h5>Kids &amp; Students</h5>
-          <p>Age-appropriate teaching and safe, joyful spaces every Sunday and Wednesday.</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="care-card">
-          <div class="care-icon"><i class="bi bi-hand-thumbs-up"></i></div>
-          <h5>Serve the City</h5>
-          <p>Food pantry, shelter partnerships, and neighbor-care teams year-round.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EVENTS -->
-<section id="events">
-  <div class="container">
-    <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-3">
-      <div>
-        <div class="eyebrow mb-2">This Season</div>
-        <h2>Upcoming Events</h2>
-      </div>
-      <a href="#contact" class="btn btn-ghost-dark">Full Calendar</a>
-    </div>
-    <div class="timeline-track">
-      <div class="timeline-card">
-        <span class="tag">Aug 14</span>
-        <h5 class="fw-bold">Neighborhood Food Drive</h5>
-        <p style="color:var(--muted);font-size:.9rem;">9:00 AM · Fellowship Hall</p>
-      </div>
-      <div class="timeline-card">
-        <span class="tag">Aug 21</span>
-        <h5 class="fw-bold">Baptism Sunday</h5>
-        <p style="color:var(--muted);font-size:.9rem;">11:00 AM · Main Sanctuary</p>
-      </div>
-      <div class="timeline-card">
-        <span class="tag">Sep 03</span>
-        <h5 class="fw-bold">Grief Support Kickoff</h5>
-        <p style="color:var(--muted);font-size:.9rem;">6:30 PM · Care Room</p>
-      </div>
-      <div class="timeline-card">
-        <span class="tag">Sep 17</span>
-        <h5 class="fw-bold">Community Meal &amp; Prayer Night</h5>
-        <p style="color:var(--muted);font-size:.9rem;">6:00 PM · Fellowship Hall</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERMON -->
-<section id="sermon" style="background:var(--paper);">
-  <div class="container">
-    <div class="sermon-block">
-      <div class="row g-0">
-        <div class="col-lg-6">
-          <div class="sermon-img">
-            <img src="images/pastor-preaching.jpg" alt="Latest message at Healing Centre Family Church">
-            <div class="play-circle"><i class="bi bi-play-fill"></i></div>
-          </div>
-        </div>
-        <div class="col-lg-6 d-flex align-items-center">
-          <div class="p-4 p-lg-5">
-            <div class="eyebrow mb-2">This Week's Message</div>
-            <h3 class="mb-3">Roots Before Fruit</h3>
-            <p style="color:rgba(255,255,255,.78);">Part four of our summer series on formation, why slow, steady healing often outlasts the quick fix.</p>
-            <a href="#" class="btn btn-sun mt-2">Watch Now <i class="bi bi-arrow-right ms-1"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- GIVE -->
-<section id="give">
-  <div class="container">
-    <div class="give-wave-band">
-      <div class="row align-items-center">
-        <div class="col-lg-8">
-          <div class="eyebrow mb-2" style="color:var(--teal-deep);opacity:.75;">Generosity</div>
-          <h2 class="mb-2">Give toward healing in our city.</h2>
-          <p style="margin-bottom:0;opacity:.85;">Every gift funds free counseling, our weekly gatherings, and care for families across Riverside.</p>
-        </div>
-        <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
-          <a href="#" class="btn btn-ghost-dark" style="background:var(--teal-deep);color:#fff;border-color:var(--teal-deep);">Give Now</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" style="background:var(--paper);">
-  <div class="container">
-    <div class="row g-5">
-      <div class="col-lg-5">
-        <div class="eyebrow mb-2">Plan a Visit</div>
-        <h2 class="mb-3">We'd love to save you a seat.</h2>
-        <ul class="list-unstyled" style="color:var(--muted);">
-          <li class="mb-2"><i class="bi bi-geo-alt me-2" style="color:var(--sun);"></i>Cnr Chris Hani Dr &amp; Guinea Fowl St, Etwatwa</li>
-          <li class="mb-2"><i class="bi bi-clock me-2" style="color:var(--sun);"></i>Sundays, 10:00 AM – 12:30 PM</li>
-          <li class="mb-2"><i class="bi bi-envelope me-2" style="color:var(--sun);"></i>hello@healingcenterfamily.org</li>
-          <li class="mb-2"><i class="bi bi-telephone me-2" style="color:var(--sun);"></i>(011) 555-0148</li>
+        <ul class="nav-links navbar-nav mx-auto d-none d-lg-flex flex-row">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="sermons.html">Sermons</a></li>
+          <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="#give">Give</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
-      </div>
-      <div class="col-lg-7">
-        <div class="contact-card">
-          <div class="row g-3">
-            <div class="col-md-6">
-              <input type="text" class="form-control" placeholder="Full name" style="border-radius:12px;padding:.75rem 1rem;">
+
+        <div class="nav-cta d-none d-lg-flex align-items-center">
+          <a class="btn btn-gold" href="#visit">Plan your visit</a>
+        </div>
+
+        <button class="nav-toggle d-lg-none ms-auto" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span aria-hidden="true"></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="nav-backdrop" id="navBackdrop" hidden></div>
+  <aside class="mobile-menu" id="mobileMenu" aria-label="Mobile menu" aria-hidden="true">
+    <div class="menu-head">
+      <span class="brand" style="font-size:1.25rem;">Healing Center Family Church</span>
+      <button class="menu-close" id="menuClose" aria-label="Close menu">&times;</button>
+    </div>
+    <nav aria-label="Mobile navigation">
+      <a class="m-link" href="index.html">Home</a>
+      <a class="m-link" href="#about">About</a>
+      <a class="m-link" href="#services">Services</a>
+      <a class="m-link" href="sermons.html">Sermons</a>
+      <a class="m-link" href="#events">Events</a>
+      <a class="m-link" href="#give">Give</a>
+      <a class="m-link" href="#contact">Contact</a>
+    </nav>
+    <div class="m-cta">
+      <a class="btn btn-gold" href="#visit">Plan your visit</a>
+      <a class="btn btn-outline-ink" href="sermons.html">Watch online</a>
+    </div>
+  </aside>
+
+  <main id="main">
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="visit">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <span class="hero-chip">
+              <span class="dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+              <span>Sunday gatherings at <b>9:00</b> &amp; <b>11:00 AM</b></span>
+            </span>
+            <h1 class="hero-title">There's a place for you at <em>this table</em>.</h1>
+            <p class="hero-lead">Healing Center Family is a warm, Christ-centered family in the heart of Asheville. Whether you're exploring faith or coming home, you'll be welcomed exactly as you are.</p>
+            <div class="hero-actions">
+              <a class="btn btn-gold btn-lg" href="#services">Plan your visit</a>
+              <a class="btn btn-outline-ink btn-lg" href="sermons.html">
+                <span class="d-inline-flex align-items-center gap-2">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                  Watch online
+                </span>
+              </a>
             </div>
-            <div class="col-md-6">
-              <input type="email" class="form-control" placeholder="Email address" style="border-radius:12px;padding:.75rem 1rem;">
+
+            <div class="hero-stats">
+              <div class="stat">
+                <div class="num" data-count="1200" data-suffix="+">0</div>
+                <div class="lbl">In our family</div>
+              </div>
+              <div class="stat">
+                <div class="num" data-count="24">0</div>
+                <div class="lbl">Small groups</div>
+              </div>
+              <div class="stat">
+                <div class="num" data-count="38" data-prefix="">0</div>
+                <div class="lbl">Years serving</div>
+              </div>
             </div>
-            <div class="col-12">
-              <textarea class="form-control" rows="4" placeholder="How can we help?" style="border-radius:12px;padding:.75rem 1rem;"></textarea>
-            </div>
-            <div class="col-12">
-              <button class="btn btn-sun" type="button">Send Message</button>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="hero-media">
+              <img src="img/hero.jpg" width="720" height="900" alt="Congregation gathered together with hands raised in worship inside a light-filled sanctuary" fetchpriority="high">
+              <div class="hero-badge">
+                <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+                <div>
+                  <div class="hb-title">Sammy Macingwane Mchunu</div>
+                  <div class="hb-sub">Senior Pastor</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="row g-4">
-      <div class="col-lg-4">
-        <h6>Healing Center Family Church</h6>
-        <p style="font-size:.9rem;">A non-denominational family of believers, gathering since 1994.</p>
-        <div class="mt-3">
-          <a href="#" class="social-dot"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="social-dot"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="social-dot"><i class="bi bi-youtube"></i></a>
-        </div>
-      </div>
-      <div class="col-6 col-lg-2">
-        <h6>Explore</h6>
-        <div class="d-flex flex-column gap-2">
-          <a href="#about">About</a>
-          <a href="#care">Ministries</a>
-          <a href="#events">Events</a>
-          <a href="#sermon">Messages</a>
-        </div>
-      </div>
-      <div class="col-6 col-lg-2">
-        <h6>Connect</h6>
-        <div class="d-flex flex-column gap-2">
-          <a href="#contact">Plan a Visit</a>
-          <a href="#give">Give</a>
-          <a href="#">Volunteer</a>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <h6>Service Times</h6>
-        <p style="font-size:.9rem;margin-bottom:.3rem;">Sundays — 10:00 AM – 12:30 PM</p>
-        <p style="font-size:.9rem;">Cnr Chris Hani Dr &amp; Guinea Fowl St, Etwatwa</p>
-      </div>
-    </div>
-    <div class="foot-bottom text-center">
-      &copy; 2026 Healing Center Family Church. All rights reserved. · Free template, built with Bootstrap 5.
-    </div>
-  </div>
-</footer>
+    <!-- ===================== ABOUT / WELCOME ===================== -->
+    <section class="section bg-cream-2" id="about">
+      <div class="container">
+        <div class="row g-5 align-items-center">
+          <div class="col-lg-6">
+            <div class="about-media">
+              <img src="img/about.jpg" width="640" height="760" loading="lazy" alt="Open Bible resting on a wooden pew beside soft morning light through a stained-glass window">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <span class="eyebrow">Who we are</span>
+            <h2 class="section-title">A family learning to love God and love people.</h2>
+            <p class="section-lead" style="max-width:none;">Healing Centre Family Church is a non-denominational, non-cultural contemporary body of believers, united in loving God through serving People. Founded by Bishops Ephraim and Mirriam Mchunu in 1994, the church has grown to a membership of 2000+
+</p>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-  window.addEventListener('scroll', function(){
-    const nav = document.getElementById('mainNav');
-    if(window.scrollY > 60){ nav.classList.add('scrolled'); }
-    else { nav.classList.remove('scrolled'); }
-  });
-</script>
+            <blockquote class="verse-quote">
+              Let us consider how we may spur one another on toward love and good deeds, not giving up meeting together.
+              <cite>Hebrews 10:24&ndash;25</cite>
+            </blockquote>
+
+            <ul class="value-list">
+              <li>
+                <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                <span><b>Rooted in Scripture.</b> Every gathering is built around teaching that's honest, practical, and hopeful.</span>
+              </li>
+              <li>
+                <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                <span><b>Genuinely welcoming.</b> Come as you are — questions, doubts, and all. There's coffee and a seat with your name on it.</span>
+              </li>
+              <li>
+                <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                <span><b>For the whole city.</b> We serve Asheville through food pantries, mentoring, and neighborhood partnerships.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SERVICE TIMES ===================== -->
+    <section class="section bg-cream" id="services">
+      <div class="container">
+        <div class="row align-items-end mb-5">
+          <div class="col-lg-8">
+            <span class="eyebrow">Gather with us</span>
+            <h2 class="section-title">Service &amp; midweek times</h2>
+          </div>
+          <div class="col-lg-4 text-lg-end">
+            <a class="link-arrow" href="#contact">Get directions <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3 reveal">
+            <div class="svc-card is-primary">
+              <span class="svc-pill">Most popular</span>
+              <div class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+              <div class="svc-name">Sunday Worship</div>
+              <div class="svc-time">9:00 AM</div>
+              <p class="svc-meta">Contemporary service · full kids' program · about 70 minutes.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 reveal d1">
+            <div class="svc-card">
+              <div class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+              <div class="svc-name">Sunday Worship</div>
+              <div class="svc-time">11:00 AM</div>
+              <p class="svc-meta">Same message, a fuller band and a relaxed pace. Coffee from 10:30.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 reveal d2">
+            <div class="svc-card">
+              <div class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v6c0 5 3.8 8.5 9 9 5.2-.5 9-4 9-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+              <div class="svc-name">Midweek Prayer</div>
+              <div class="svc-time">7:00 PM</div>
+              <p class="svc-meta">Wednesdays in the Chapel. Come to pray, reflect, and breathe.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 reveal d3">
+            <div class="svc-card">
+              <div class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+              <div class="svc-name">Bible Study</div>
+              <div class="svc-time">6:30 PM</div>
+              <p class="svc-meta">Thursdays. Dig deeper into the Sunday text over a shared meal.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== WHAT TO EXPECT ===================== -->
+    <section class="section bg-cream-2">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="eyebrow center">First time?</span>
+          <h2 class="section-title">What to expect on Sunday</h2>
+          <p class="section-lead mx-auto">Walking into a new church can feel daunting. Here's exactly what your first visit will look like — no surprises.</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4 reveal">
+            <div class="expect-card">
+              <span class="expect-num">01</span>
+              <div class="expect-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-9.33-5"/><path d="M6 8a6 6 0 0 0 12 0"/><path d="M2 21a8 8 0 0 1 10.43-7.62"/><circle cx="10" cy="8" r="5"/><path d="M16 18h6"/><path d="M19 15v6"/></svg></div>
+              <h3>A friendly hello</h3>
+              <p>A greeter will meet you at the door, help you find coffee, and point the kids toward their check-in. Arrive whenever — there's no wrong time.</p>
+            </div>
+          </div>
+          <div class="col-md-4 reveal d1">
+            <div class="expect-card">
+              <span class="expect-num">02</span>
+              <div class="expect-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+              <h3>Worship &amp; a message</h3>
+              <p>Expect around 25 minutes of music followed by a down-to-earth, 30-minute message from the Bible. Come as you are — jeans are just fine.</p>
+            </div>
+          </div>
+          <div class="col-md-4 reveal d2">
+            <div class="expect-card">
+              <span class="expect-num">03</span>
+              <div class="expect-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <h3>Room to belong</h3>
+              <p>Stay for coffee afterward and meet real people. No pressure to sign anything — just an open invitation to keep exploring together.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SERMONS ===================== -->
+    <section class="section bg-cream" id="sermons">
+      <div class="container">
+        <div class="row align-items-end mb-5">
+          <div class="col-lg-8">
+            <span class="eyebrow">Recent teaching</span>
+            <h2 class="section-title">Messages worth a second listen</h2>
+          </div>
+          <div class="col-lg-4 text-lg-end">
+            <a class="btn btn-outline-ink" href="sermons.html">Browse all sermons</a>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <!-- Sermon 1 -->
+          <div class="col-sm-6 col-lg-3 reveal">
+            <article class="sermon-card">
+              <div class="sermon-thumb">
+                <img src="img/sermon-1.jpg" width="640" height="400" loading="lazy" alt="Pastor teaching from an open Bible on a wooden stage">
+                <span class="sermon-series">Rooted</span>
+                <a class="sermon-play" href="sermons.html" aria-label="Play sermon: The Weight of Grace"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></a>
+              </div>
+              <div class="sermon-body">
+                <div class="sermon-meta">
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Jul 12</span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>38 min</span>
+                </div>
+                <h3><a href="sermons.html">The Weight of Grace</a></h3>
+                <p class="sermon-speaker">with <b>Pastor Daniel Osei</b></p>
+                <div class="sermon-actions">
+                  <a href="sermons.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>Watch</a>
+                  <a href="sermons.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>Listen</a>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- Sermon 2 -->
+          <div class="col-sm-6 col-lg-3 reveal d1">
+            <article class="sermon-card">
+              <div class="sermon-thumb">
+                <img src="img/sermon-2.jpg" width="640" height="400" loading="lazy" alt="Worship band leading music with warm stage lighting">
+                <span class="sermon-series">Psalms</span>
+                <a class="sermon-play" href="sermons.html" aria-label="Play sermon: When the Valley Is Deep"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></a>
+              </div>
+              <div class="sermon-body">
+                <div class="sermon-meta">
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Jul 5</span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>34 min</span>
+                </div>
+                <h3><a href="sermons.html">When the Valley Is Deep</a></h3>
+                <p class="sermon-speaker">with <b>Pastor Ruth Delgado</b></p>
+                <div class="sermon-actions">
+                  <a href="sermons.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>Watch</a>
+                  <a href="sermons.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>Listen</a>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- Sermon 3 -->
+          <div class="col-sm-6 col-lg-3 reveal d2">
+            <article class="sermon-card">
+              <div class="sermon-thumb">
+                <img src="img/sermon-3.jpg" width="640" height="400" loading="lazy" alt="Congregation listening intently during a Sunday message">
+                <span class="sermon-series">Rooted</span>
+                <a class="sermon-play" href="sermons.html" aria-label="Play sermon: Everyday Faithfulness"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></a>
+              </div>
+              <div class="sermon-body">
+                <div class="sermon-meta">
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Jun 28</span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>41 min</span>
+                </div>
+                <h3><a href="sermons.html">Everyday Faithfulness</a></h3>
+                <p class="sermon-speaker">with <b>Pastor Daniel Osei</b></p>
+                <div class="sermon-actions">
+                  <a href="sermons.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>Watch</a>
+                  <a href="sermons.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>Listen</a>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- Sermon 4 -->
+          <div class="col-sm-6 col-lg-3 reveal d3">
+            <article class="sermon-card">
+              <div class="sermon-thumb">
+                <img src="img/sermon-4.jpg" width="640" height="400" loading="lazy" alt="Candlelit evening prayer gathering in the chapel">
+                <span class="sermon-series">Guest</span>
+                <a class="sermon-play" href="sermons.html" aria-label="Play sermon: The Table Is Wide"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></a>
+              </div>
+              <div class="sermon-body">
+                <div class="sermon-meta">
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Jun 21</span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>29 min</span>
+                </div>
+                <h3><a href="sermons.html">The Table Is Wide</a></h3>
+                <p class="sermon-speaker">with <b>Rev. Amara Nwosu</b></p>
+                <div class="sermon-actions">
+                  <a href="sermons.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>Watch</a>
+                  <a href="sermons.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>Listen</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== MINISTRIES ===================== -->
+    <section class="section bg-cream-2" id="ministries">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="eyebrow center">Find your people</span>
+          <h2 class="section-title">Ministries &amp; groups</h2>
+          <p class="section-lead mx-auto">From toddlers to grandparents, there's a place to grow, serve, and build real friendships.</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4 reveal">
+            <article class="ministry-card">
+              <img src="img/min-kids.jpg" width="520" height="360" loading="lazy" alt="Children laughing during a Sunday kids' program activity">
+              <div class="ministry-body">
+                <span class="ministry-tag">Ages 0&ndash;11</span>
+                <h3>Grace Kids</h3>
+                <p>Safe, joyful, secure check-in so kids can explore faith at their level.</p>
+                <span class="m-when"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Sundays · both services</span>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4 reveal d1">
+            <article class="ministry-card">
+              <img src="img/min-youth.jpg" width="520" height="360" loading="lazy" alt="Teenagers gathered together and smiling at a youth group night">
+              <div class="ministry-body">
+                <span class="ministry-tag">Grades 6&ndash;12</span>
+                <h3>Youth Collective</h3>
+                <p>Games, honest conversation, and mentors who actually show up.</p>
+                <span class="m-when"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Fridays · 6:30 PM</span>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4 reveal d2">
+            <article class="ministry-card">
+              <img src="img/min-worship.jpg" width="520" height="360" loading="lazy" alt="Worship team rehearsing with guitars and microphones">
+              <div class="ministry-body">
+                <span class="ministry-tag">All ages</span>
+                <h3>Worship Team</h3>
+                <p>Musicians, vocalists, and tech volunteers who help us sing together.</p>
+                <span class="m-when"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Rehearsal · Thu 7 PM</span>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4 reveal">
+            <article class="ministry-card">
+              <img src="img/min-outreach.jpg" width="520" height="360" loading="lazy" alt="Volunteers packing boxes of food for a neighborhood outreach">
+              <div class="ministry-body">
+                <span class="ministry-tag">Serve the city</span>
+                <h3>Outreach &amp; Mercy</h3>
+                <p>Food pantry, refugee welcome, and monthly neighborhood serve days.</p>
+                <span class="m-when"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>2nd Saturdays · 9 AM</span>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4 reveal d1">
+            <article class="ministry-card">
+              <img src="img/min-groups.jpg" width="520" height="360" loading="lazy" alt="Small group of adults talking around a living-room coffee table">
+              <div class="ministry-body">
+                <span class="ministry-tag">Midweek</span>
+                <h3>Small Groups</h3>
+                <p>Twenty-four groups across the city meeting in homes to share life.</p>
+                <span class="m-when"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Various nights</span>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4 reveal d2">
+            <article class="ministry-card">
+              <img src="img/min-prayer.jpg" width="520" height="360" loading="lazy" alt="Hands joined together in prayer around a candle">
+              <div class="ministry-body">
+                <span class="ministry-tag">Every week</span>
+                <h3>Prayer Ministry</h3>
+                <p>A team that prays over every request — quietly, faithfully, all year.</p>
+                <span class="m-when"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Wednesdays · 7 PM</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== EVENTS ===================== -->
+    <section class="section bg-cream" id="events">
+      <div class="container">
+        <div class="row align-items-end mb-5">
+          <div class="col-lg-8">
+            <span class="eyebrow">Mark your calendar</span>
+            <h2 class="section-title">Upcoming events</h2>
+          </div>
+          <div class="col-lg-4 text-lg-end">
+            <a class="link-arrow" href="#contact">Full calendar <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          </div>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-lg-6 reveal">
+            <div class="event-row">
+              <div class="event-date"><div class="mo">Jul</div><div class="day">26</div></div>
+              <div class="event-main">
+                <div class="event-cat">Community</div>
+                <h3>Summer Block Party</h3>
+                <div class="event-meta">
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>4:00 &ndash; 8:00 PM</span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Sycamore Lawn</span>
+                </div>
+              </div>
+              <a class="btn btn-outline-ink" href="#visit">RSVP</a>
+            </div>
+          </div>
+          <div class="col-lg-6 reveal d1">
+            <div class="event-row">
+              <div class="event-date"><div class="mo">Aug</div><div class="day">02</div></div>
+              <div class="event-main">
+                <div class="event-cat">Baptism</div>
+                <h3>Baptism Sunday &amp; Picnic</h3>
+                <div class="event-meta">
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>11:00 AM</span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Beaver Lake</span>
+                </div>
+              </div>
+              <a class="btn btn-outline-ink" href="#visit">RSVP</a>
+            </div>
+          </div>
+          <div class="col-lg-6 reveal">
+            <div class="event-row">
+              <div class="event-date"><div class="mo">Aug</div><div class="day">09</div></div>
+              <div class="event-main">
+                <div class="event-cat">Serve day</div>
+                <h3>City Serve: Food Pantry Restock</h3>
+                <div class="event-meta">
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>9:00 AM &ndash; noon</span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Fellowship Hall</span>
+                </div>
+              </div>
+              <a class="btn btn-outline-ink" href="#visit">RSVP</a>
+            </div>
+          </div>
+          <div class="col-lg-6 reveal d1">
+            <div class="event-row">
+              <div class="event-date"><div class="mo">Aug</div><div class="day">15</div></div>
+              <div class="event-main">
+                <div class="event-cat">Women</div>
+                <h3>Women's Breakfast &amp; Study</h3>
+                <div class="event-meta">
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>8:30 AM</span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>The Commons</span>
+                </div>
+              </div>
+              <a class="btn btn-outline-ink" href="#visit">RSVP</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STAFF / PASTORS ===================== -->
+    <section class="section bg-cream-2" id="team">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="eyebrow center">The people who serve you</span>
+          <h2 class="section-title">Meet our pastors &amp; team</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-6 col-lg-3 reveal">
+            <div class="staff-card">
+              <div class="staff-photo">
+                <img src="img/staff-1.jpg" width="400" height="400" loading="lazy" alt="Portrait of Pastor Daniel Osei smiling warmly">
+                <div class="staff-social">
+                  <a href="#team" aria-label="Daniel on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.4 8.5L23 22h-6.9l-5-6.6L5.4 22H2l7.9-9L1.6 2h7l4.5 6z"/></svg></a>
+                  <a href="#team" aria-label="Email Daniel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
+                </div>
+              </div>
+              <h3>Daniel Osei</h3>
+              <div class="staff-role">Lead Pastor</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3 reveal d1">
+            <div class="staff-card">
+              <div class="staff-photo">
+                <img src="img/staff-2.jpg" width="400" height="400" loading="lazy" alt="Portrait of Pastor Ruth Delgado">
+                <div class="staff-social">
+                  <a href="#team" aria-label="Ruth on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.4 8.5L23 22h-6.9l-5-6.6L5.4 22H2l7.9-9L1.6 2h7l4.5 6z"/></svg></a>
+                  <a href="#team" aria-label="Email Ruth"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
+                </div>
+              </div>
+              <h3>Ruth Delgado</h3>
+              <div class="staff-role">Teaching Pastor</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3 reveal d2">
+            <div class="staff-card">
+              <div class="staff-photo">
+                <img src="img/staff-3.jpg" width="400" height="400" loading="lazy" alt="Portrait of worship director Micah Bennett">
+                <div class="staff-social">
+                  <a href="#team" aria-label="Micah on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.4 8.5L23 22h-6.9l-5-6.6L5.4 22H2l7.9-9L1.6 2h7l4.5 6z"/></svg></a>
+                  <a href="#team" aria-label="Email Micah"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
+                </div>
+              </div>
+              <h3>Micah Bennett</h3>
+              <div class="staff-role">Worship Director</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3 reveal d3">
+            <div class="staff-card">
+              <div class="staff-photo">
+                <img src="img/staff-4.jpg" width="400" height="400" loading="lazy" alt="Portrait of family pastor Grace Kim">
+                <div class="staff-social">
+                  <a href="#team" aria-label="Grace on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.4 8.5L23 22h-6.9l-5-6.6L5.4 22H2l7.9-9L1.6 2h7l4.5 6z"/></svg></a>
+                  <a href="#team" aria-label="Email Grace"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
+                </div>
+              </div>
+              <h3>Grace Kim</h3>
+              <div class="staff-role">Family &amp; Kids Pastor</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== GIVE BAND ===================== -->
+    <section class="section give-band" id="give">
+      <div class="container">
+        <div class="row g-5 align-items-center">
+          <div class="col-lg-6">
+            <span class="eyebrow">Generosity</span>
+            <h2 class="give-title">Your giving sends love further than these walls.</h2>
+            <p class="give-lead">Every gift funds our food pantry, keeps kids' ministry thriving, and helps neighbors in crisis. Give once or set up a recurring gift — securely, in under a minute.</p>
+            <blockquote class="verse-quote">
+              Each of you should give what you have decided in your heart to give, for God loves a cheerful giver.
+              <cite>2 Corinthians 9:7</cite>
+            </blockquote>
+          </div>
+          <div class="col-lg-6">
+            <div class="give-panel">
+              <h3>Make a gift today</h3>
+              <p style="color:rgba(247,241,230,.78);margin-bottom:0;">Choose an amount to get started.</p>
+              <div class="give-amounts" role="group" aria-label="Choose a giving amount">
+                <button type="button" class="amount-btn">R25</button>
+                <button type="button" class="amount-btn active">$50</button>
+                <button type="button" class="amount-btn">R100</button>
+                <button type="button" class="amount-btn">R250</button>
+                <button type="button" class="amount-btn">Other</button>
+              </div>
+              <a class="btn btn-gold btn-lg w-100" href="#give">Give <span class="give-amount-label">$50</span> securely</a>
+              <div class="give-methods">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Card</span>
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg>Bank transfer</span>
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg>Recurring</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== GALLERY ===================== -->
+    <section class="section bg-cream" id="gallery">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="eyebrow center">Life together</span>
+          <h2 class="section-title">Moments from our community</h2>
+        </div>
+        <div class="gallery-grid">
+          <button class="gallery-item g-wide g-tall" data-full="img/gallery-1.jpg" aria-label="Open photo: Sunday worship gathering">
+            <img src="img/gallery-1.jpg" width="600" height="600" loading="lazy" alt="Congregation worshipping together with warm light">
+            <span class="g-plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <button class="gallery-item" data-full="img/gallery-2.jpg" aria-label="Open photo: Kids' ministry craft time">
+            <img src="img/gallery-2.jpg" width="300" height="300" loading="lazy" alt="Children doing crafts in the kids' room">
+            <span class="g-plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <button class="gallery-item" data-full="img/gallery-3.jpg" aria-label="Open photo: Shared community meal">
+            <img src="img/gallery-3.jpg" width="300" height="300" loading="lazy" alt="People sharing a meal at long tables">
+            <span class="g-plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <button class="gallery-item g-wide" data-full="img/gallery-4.jpg" aria-label="Open photo: Outdoor baptism celebration">
+            <img src="img/gallery-4.jpg" width="600" height="300" loading="lazy" alt="Outdoor baptism celebration by the lake">
+            <span class="g-plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <button class="gallery-item" data-full="img/gallery-5.jpg" aria-label="Open photo: Volunteers serving the neighborhood">
+            <img src="img/gallery-5.jpg" width="300" height="300" loading="lazy" alt="Volunteers handing out food to neighbors">
+            <span class="g-plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <button class="gallery-item" data-full="img/gallery-6.jpg" aria-label="Open photo: Youth group evening">
+            <img src="img/gallery-6.jpg" width="300" height="300" loading="lazy" alt="Youth group laughing together in the evening">
+            <span class="g-plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== NEWSLETTER ===================== -->
+    <section class="section-sm bg-cream-2" id="contact">
+      <div class="container">
+        <div class="newsletter-card">
+          <div class="container-inner">
+            <div class="row align-items-center g-4">
+              <div class="col-lg-7">
+                <span class="eyebrow">Stay connected</span>
+                <h2 class="section-title" style="font-size:clamp(1.8rem,3.4vw,2.6rem);">The week ahead, in your inbox</h2>
+                <p class="section-lead" style="max-width:46ch;">One short email each Friday — the Sunday text, prayer needs, and what's coming up. No spam, ever.</p>
+              </div>
+              <div class="col-lg-5">
+                <form class="newsletter-form" id="newsletterForm" novalidate>
+                  <label class="visually-hidden" for="nlEmail">Email address</label>
+                  <input type="email" id="nlEmail" name="email" placeholder="you@example.com" required autocomplete="email">
+                  <button class="btn btn-ink" type="submit">Subscribe</button>
+                </form>
+                <p class="form-msg" id="nlMsg" role="status" aria-live="polite"></p>
+                <p class="newsletter-note">By subscribing you agree to receive our weekly update. Unsubscribe anytime.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <a class="brand" href="index.html" aria-label="Healing Center Family Church home">
+            
+            <span>Healing Center<small>Family Church</small></span>
+          </a>
+          <p class="footer-about">A warm, Christ-centered family in downtown Asheville. Wherever you are on the journey, there's a seat for you here.</p>
+          <div class="footer-social">
+            <a href="#contact" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg></a>
+            <a href="#contact" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#contact" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.8-1.8C19.2 5 12 5 12 5s-7.2 0-8.8.5A2.5 2.5 0 0 0 1.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.8 1.8C4.8 19 12 19 12 19s7.2 0 8.8-.5a2.5 2.5 0 0 0 1.8-1.8C23 15.2 23 12 23 12zM10 15V9l5 3z"/></svg></a>
+            <a href="#contact" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.4 8.5L23 22h-6.9l-5-6.6L5.4 22H2l7.9-9L1.6 2h7l4.5 6z"/></svg></a>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h4>Explore</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About us</a></li>
+            <li><a href="#services">Service times</a></li>
+            <li><a href="sermons.html">Sermons</a></li>
+            <li><a href="#ministries">Ministries</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#give">Give</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-lg-3">
+          <h4>Weekly gatherings</h4>
+          <ul class="footer-svc">
+            <li><span class="d">Sunday Worship</span><span class="t">9 &amp; 11 AM</span></li>
+            <li><span class="d">Midweek Prayer</span><span class="t">Wed 7 PM</span></li>
+            <li><span class="d">Bible Study</span><span class="t">Thu 6:30 PM</span></li>
+            <li><span class="d">Youth Collective</span><span class="t">Fri 6:30 PM</span></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3">
+          <h4>Visit us</h4>
+          <ul class="footer-contact">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Cnr Chris Hani Dr & Guinea Fowl St<br>, Etwatwa</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+              <a href="tel:+18285550142">(828) 555-0142</a>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+              <a href="mailto:hello@gracecommunity.org">hello@healingcenterfamilychurch.org</a>
+            </li>
+          </ul>
+          <a class="footer-map" href="https://maps.google.com/?q=412+Sycamore+Street+Asheville+NC" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20 3 17V4l6 3 6-3 6 3v13l-6-3-6 3z"/><path d="M9 7v13M15 4v13"/></svg>
+            Get directions on the map
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="row align-items-center g-2">
+          <div class="col-md-6">&copy; 2026 Healing Center Family Church.</div>
+          <div class="col-md-6 text-md-end">
+            <a href="#contact">Privacy</a> &middot; <a href="#contact">Accessibility</a> &middot; <a href="#give">Give</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="lightbox-btn lb-close" id="lbClose" aria-label="Close viewer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <button class="lightbox-btn lb-prev" id="lbPrev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 18-6-6 6-6"/></svg></button>
+    <img id="lbImg" src="" alt="">
+    <button class="lightbox-btn lb-next" id="lbNext" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></button>
+    <div class="lb-count" id="lbCount"></div>
+  </div>
+
+  <button class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m18 15-6-6-6 6"/></svg></button>
+
+  <!-- Scripts -->
+  <script src="js/vendor/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
