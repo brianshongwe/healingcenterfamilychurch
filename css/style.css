@@ -18,8 +18,8 @@ html:not(.js) .reveal,html:not(.js) [class*="reveal"]{opacity:1!important;transf
   --plum-soft:  #6b5074;
 
   /* Gold accent */
-  --gold:       #c1912f;
-  --gold-bright:#d8a63f;
+  --gold:       #b34aca;
+  --gold-bright:#b34aca;
   --gold-soft:  #ecd39a;
   --gold-wash:  #f4e8cf;
   --gold-deep:  #9a6f1f;
